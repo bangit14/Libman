@@ -11,12 +11,24 @@ public class BorrowingSlipDAO {
 
     public List<BorrowingSlip> getBorrowingSlipByReader(int readerId, Timestamp startDate, Timestamp endDate) {
         List<BorrowingSlip> borrowingSlips = new ArrayList<>();
-        String sql = "SELECT * FROM tblBorrowingSlip WHERE ReadertblUserid = ? and loanDate between ? and ? ORDER BY id ASC";
+
+        String sql = "SELECT * FROM tblBorrowingSlip WHERE ReadertblUserid = ?";
+        if (startDate != null && endDate != null) {
+            sql += " AND loanDate BETWEEN ? AND ?";
+        }
+        sql += " ORDER BY id ASC";
 
         try (Connection conn = DatabaseConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, readerId);
+
+            // Chỉ set thêm nếu có ngày
+            if (startDate != null && endDate != null) {
+                ps.setTimestamp(2, startDate);
+                ps.setTimestamp(3, endDate);
+            }
+
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -33,6 +45,7 @@ public class BorrowingSlipDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return borrowingSlips;
     }
 }

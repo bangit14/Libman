@@ -200,7 +200,7 @@
     <h1 class="page-title">Tìm kiếm tài liệu</h1>
 
     <div class="search-section">
-        <form method="post" action="search" class="search-form">
+        <form method="get" action="search" class="search-form">
             <label class="search-label">Từ khóa:</label>
             <input type="text" name="keyword" placeholder="Nhập từ khóa..."
                    class="search-input"

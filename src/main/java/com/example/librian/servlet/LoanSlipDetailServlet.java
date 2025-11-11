@@ -9,6 +9,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.List;
 
 @WebServlet("/loan-slip-detail")
@@ -32,6 +33,7 @@ public class LoanSlipDetailServlet extends HttpServlet {
 
         try {
             int borrowingSlipId = Integer.parseInt(borrowingSlipIdParam);
+            String loanDate = request.getParameter("loanDate");
             LoanSlipDetailDAO loanSlipDetailDAO = new LoanSlipDetailDAO();
             List<LoanSlipDetail> loanSlipDetails = loanSlipDetailDAO.getDocumentBorrowingSlip(borrowingSlipId);
 
@@ -48,6 +50,7 @@ public class LoanSlipDetailServlet extends HttpServlet {
             request.setAttribute("loanSlipDetails", loanSlipDetails);
             request.setAttribute("documentNameMap", documentNameMap);
             request.setAttribute("borrowingSlipId", borrowingSlipId);
+            request.setAttribute("loanDate", loanDate);
             request.getRequestDispatcher("/LoanSlipDetail.jsp").forward(request, response);
 
         } catch (NumberFormatException e) {

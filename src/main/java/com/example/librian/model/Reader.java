@@ -8,6 +8,11 @@ public class Reader extends User {
         super();
     }
 
+    public Reader(int borrowCount){
+        super();
+        this.borrowCount = borrowCount;
+    }
+
     public int getBorrowCount() {
         return borrowCount;
     }

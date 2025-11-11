@@ -225,7 +225,7 @@
                     </div>
                     <div class="info-group">
                         <label>Ngày mượn:</label>
-                        <input type="text" value="<%= request.getAttribute("returnDate")%>" readonly>
+                        <input type="text" value="<%= request.getAttribute("loanDate")%>" readonly>
                     </div>
                 </div>
             </div>

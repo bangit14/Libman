@@ -313,7 +313,10 @@
                                 <td><%= reader.getPhone() != null ? reader.getPhone() : "N/A" %></td>
                                 <td><%= reader.getBorrowCount() %></td>
                                 <td>
-                                    <a href="loan-detail?readerId=<%= reader.getId() %>" class="detail-btn">Xem chi tiết</a>
+                                    <a href="loan-detail?readerId=<%= reader.getId() %>&startDate=<%= request.getAttribute("startDate") != null ? request.getAttribute("startDate") : "" %>&endDate=<%= request.getAttribute("endDate") != null ? request.getAttribute("endDate") : "" %>"
+                                       class="detail-btn">
+                                        Xem chi tiết
+                                    </a>
                                 </td>
                             </tr>
                         <% } %>

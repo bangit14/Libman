@@ -22,23 +22,6 @@ public class SearchServlet extends HttpServlet {
             return;
         }
 
-        DocumentDAO documentDAO = new DocumentDAO();
-        List<Document> documents = documentDAO.getAllDocuments();
-
-        request.setAttribute("documents", documents);
-        request.getRequestDispatcher("/SearchDocument.jsp").forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        HttpSession session = request.getSession();
-        if (session.getAttribute("user") == null) {
-            response.sendRedirect("login");
-            return;
-        }
-
         String keyword = request.getParameter("keyword");
         DocumentDAO documentDAO = new DocumentDAO();
         List<Document> documents;
@@ -53,4 +36,5 @@ public class SearchServlet extends HttpServlet {
         request.setAttribute("documents", documents);
         request.getRequestDispatcher("/SearchDocument.jsp").forward(request, response);
     }
+
 }

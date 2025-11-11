@@ -251,7 +251,9 @@
                     </div>
                     <div class="info-group">
                         <label>Số lần mượn:</label>
-                        <input type="text" value="<%= ((List<BorrowingSlip>) request.getAttribute("borrowingSlips")).size() %>" readonly>
+                        <input type="text"
+                               value="<%= request.getAttribute("borrowingSlips") != null ? ((List<BorrowingSlip>) request.getAttribute("borrowingSlips")).size() : 0 %>"
+                               readonly>
                     </div>
                 </div>
             </div>
@@ -279,7 +281,7 @@
                                 <td><%= slip.getDueDate() != null ? dateFormat.format(slip.getDueDate()) : "N/A" %></td>
                                 <td><%= slip.getStatus() != null ? slip.getStatus() : "N/A" %></td>
                                 <td>
-                                    <a href="loan-slip-detail?borrowingSlipId=<%= slip.getId() %>" class="detail-btn">Xem chi tiết</a>
+                                    <a href="loan-slip-detail?borrowingSlipId=<%= slip.getId() %>&loanDate=<%= slip.getLoanDate()%>" class="detail-btn">Xem chi tiết</a>
                                 </td>
                             </tr>
                         <% } %>
